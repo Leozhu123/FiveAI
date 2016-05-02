@@ -1,6 +1,5 @@
 var me = true;
 var over = false;
-var computerfirst=true;
 
 
 var chessBoard = [];
@@ -81,10 +80,6 @@ logo.src="images/moon.png";
 logo.onload=function(){
 	context.drawImage(logo,0,0,450,450);
 	drawChessBoard();
-	if (computerfirst){
-	  oneStep( 7 , 7 , true);
-	  me = true;
-	}
 }
 
 var drawChessBoard = function(){
@@ -124,7 +119,7 @@ chess.onclick = function (e){
 	i = Math.floor(x / 30);
 	j = Math.floor(y / 30);
 	if (chessBoard[i][j] == 0){
-		oneStep(i,j,!computerfirst);
+		oneStep(i,j,me);
 		chessBoard[i][j] = 1;
 	for (var k = 0; k < count; k++){
 		if (wins[i][j][k]){
@@ -208,7 +203,7 @@ var computerAI = function () {
 
 		}
 	}
-	oneStep( u, v, computerfirst);
+	oneStep( u, v, false);
 	chessBoard[u][v] = 2;
 	for (var k = 0; k < count; k++){
 		if (wins[u][v][k]){
